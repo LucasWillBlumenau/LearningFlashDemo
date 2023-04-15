@@ -213,7 +213,6 @@
         width: 100%;
         justify-content: center;
         text-align: center;
-        margin-bottom: 4rem;
     }
   }  
 </style>

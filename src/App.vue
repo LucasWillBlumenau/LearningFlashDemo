@@ -31,4 +31,12 @@ import SideBar from './components/SideBar.vue';
   .page-content {
     margin-left: 4rem;
   }
+
+  @media screen and (max-width: 900px) {
+    .page-content {
+      margin-left: 0;
+      margin-bottom: 2rem;
+    }
+  }
+  
 </style>

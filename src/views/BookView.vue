@@ -48,7 +48,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        height: min-content;
+        width: 100vw;
+        padding: 2rem 0.5rem;
         gap: 35px;
     }
 
@@ -66,6 +68,7 @@
     .synopses-section {
         display: flex;
         flex-direction: column;
+        justify-content: center;
         align-items: center;
         gap: 25px;
         width: 400px;
@@ -88,5 +91,11 @@
 
     .play-button span i{
         margin-right: 5px;
+    }
+
+    @media screen and (max-width: 900px) {
+        .book-page {
+            flex-direction: column;
+        }
     }
 </style>
