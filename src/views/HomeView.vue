@@ -1,5 +1,22 @@
 <template>
   <main class="home">
+    <div v-if="isModalActive" class="modal">
+        <h3>Adicione Seu Novo Deck</h3>
+        <form @submit.prevent="createDeck">
+            <div class="inputfield">
+                <label for="firstField">Nome</label>
+                <input type="text" name="firstField" v-model="deckName" required>
+            </div>
+            <div class="inputfield">
+                <label for="secondField">Descrição</label>
+                <input type="text" name="secondField" v-model="deckDescription" required>
+            </div>
+            <div class="buttons">
+                <button type="submit">Adicionar</button>
+                <button @click="isModalActive = false">Cancelar</button>
+            </div>
+        </form>
+    </div>
     <h1 class="section-title">Confira os resumos da semana</h1>
     <section class="books-section">
       <a v-for="(image, index) in images" :href="'/books/' + index">
@@ -7,29 +24,38 @@
       </a>
     </section>
     <h1 class="section-title">Biblioteca de Decks:</h1>
-    <section class="flashcards-section">
+    <section v-if="decks.length == 0" class="no-flashcards-section">
         <div class="flashcard">
             <div class="first-card"></div>
             <div class="second-card"></div>
         </div>
         <div class="flashcard-appender">
             <p>Você ainda não possui nenhum deck...</p>
-            <div class="plus-button">
+            <div class="plus-button" @click="isModalActive = true">
                 <i class="fa fa-plus"></i>
                 <p>Adicionar novo deck</p>
             </div>
         </div>
     </section>
+    <section v-else class="decks-section">
+      <div class="decks">
+        <Deck v-for="deck in decks" :deck-title="deck.deckTitle" :deck-description="deck.deckDescription" />
+      </div>
+      <div class="plus-button" @click="isModalActive = true">
+          <i class="fa fa-plus"></i>
+          <p>Adicionar novo deck</p>
+      </div>
+    </section>
+    
   </main>
 </template>
 
 <script>
   import BookCard from '@/components/BookCard.vue';
+  import Deck from '@/components/Deck.vue';
   export default {
     name: 'HomeView',
-    components: {
-      BookCard
-    },
+    components: { BookCard, Deck },
     data: () => ({
       images: [
         {
@@ -52,16 +78,30 @@
           book: 'Os Sofrimentos do Jovem Werther',
           source: require('@/assets/img/werther.jpg')
         },
-      ]
-    }) 
+      ],
+      decks: [],
+      deckName: '',
+      deckDescription: '',
+      isModalActive: false
+    }),
+    methods: {
+      createDeck: function() {
+        this.decks.push({
+          deckTitle: this.deckName,
+          deckDescription: this.deckDescription
+        });
+        this.isModalActive = false;
+      }
+    }
   }
 </script>
 
-<style>
+<style scoped>
   .home {
     width: 100vw;
     height: 100vh;
     padding: 35px 15px;
+    position: relative;
   }
 
   .section-title {
@@ -89,7 +129,26 @@
     text-decoration: none;
   }
 
-  .flashcards-section {
+  .decks-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding: 25px 45px;
+  }
+
+  .decks {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding: 25px 45px;
+  }
+
+  .no-flashcards-section {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -174,6 +233,56 @@
       font-weight: 600;
   }
 
+  .modal {
+      position: absolute;
+      top: 40%;
+      left: 40%;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #111111;
+      color: #fff;
+      height: 300px;
+      width: 300px;
+      gap: 25px;
+      padding: 50px 30px;
+      border-radius: 25px;
+  }
+
+  .inputfield {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 15px;
+  }
+
+  .inputfield input {
+      border: none;
+      border-radius: 5px;
+      padding: 3px 5px;
+      outline: none;
+  }
+
+  .buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+  }
+
+  .buttons button {
+      border: none;
+      border-radius: 5px;
+      padding: 10px 15px;
+      background-color: #03ee03f6;
+  }
+
+  .buttons button:hover {
+      cursor: pointer;
+  }
+
   @media screen and (max-width: 900px) {
     .home {
       margin-left: 0;
@@ -185,7 +294,12 @@
         gap: 30px;
     }
 
-    .flashcards-section {
+    .modal {
+      position: fixed;
+      left: 15%;
+    }
+
+    .no-flashcards-section {
         flex-direction: column;
         width: 100%;
     }
@@ -213,6 +327,10 @@
         width: 100%;
         justify-content: center;
         text-align: center;
+    }
+
+    .decks-section {
+      margin-bottom: 2rem;
     }
   }  
 </style>

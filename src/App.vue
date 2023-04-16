@@ -1,14 +1,15 @@
 <template>
   <SideBar />
   <router-view class="page-content"/>
+
 </template>
 
 <script>
-import SideBar from './components/SideBar.vue';
+  import SideBar from './components/SideBar.vue';
   export default {
     name: "App",
     components: { SideBar }
-}
+  }
 </script>
 
 <style>
@@ -28,13 +29,15 @@ import SideBar from './components/SideBar.vue';
     overflow-x: hidden;
   }
 
-  .page-content {
-    margin-left: 4rem;
+  
+  @media screen and (min-width: 900px) {
+    .page-content {
+      margin-left: 4rem;
+    }
   }
 
   @media screen and (max-width: 900px) {
     .page-content {
-      margin-left: 0;
       margin-bottom: 2rem;
     }
   }

@@ -1,11 +1,11 @@
 <template>
     <main class="book-page">
         <section>
-            <h3 class="book-title">{{ images[$route.params.index].book }}</h3>
-            <img class="book-image" :src="images[$route.params.index].source">
+            <h3 class="book-title">{{ books[$route.params.index].book }}</h3>
+            <img class="book-image" :src="books[$route.params.index].source">
         </section>
         <section class="synopses-section">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime repellat doloribus consequuntur repudiandae iste, similique, facilis, obcaecati quam dolor omnis quis itaque quos. Quos voluptatem dolorem, sequi praesentium id ex?Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, accusamus in, delectus vel commodi sit veritatis dolorum, aliquam dolore est pariatur. Eligendi beatae quia corporis voluptates magni quo quod deserunt?Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, quibusdam beatae vero perspiciatis veritatis, nesciunt, molestias adipisci ducimus modi officia reprehenderit. Nemo eos aliquid autem pariatur laboriosam nisi adipisci ut?</p>
+            <p>{{ books[$route.params.index].synopsis }}</p>
             <button class="play-button">
                 <span><i class="fa fa-play"></i>Reproduzir Resumo</span>
             </button>
@@ -17,27 +17,32 @@
     export default {
         name: 'BookPage',
         data: () => ({
-            images: [
+            books: [
                 {
                     book: '1984',
-                    source: require('@/assets/img/1984.jpg')
+                    source: require('@/assets/img/1984.jpg'),
+                    synopsis: '1984 desenha uma realidade em que as pessoas vivem sob tutela de um governo tirânico que controla tudo aquilo que é pensado pelas pessoas. O herói da história, Winston Smith busca lutar contra o partido que governa o local em que vivem e busca entender como fora o mundo antes da ditadura.'
                 },
                 {
                     book: 'Fahreheit 451',
-                    source: require('@/assets/img/fahreheit.jpg')
+                    source: require('@/assets/img/fahreheit.jpg'),
+                    synopsis: 'Fahreheit 451 é um romance escrito por Ray Bradbury e retrata um mundo em que o governo disperta nas pessoas um ódio enorme pela leitura e faz com elas vejam como um crime as ações de ler ou ter livros. O herói da história é um bombeiro, cuja função é simples - queimar livros. Com o passar do tempo o protagonista começa a se questionar do porquê haver tanto ódio aos livros na sociedade, e acaba adquirindo alguns deles em segredo.'
                 },
                 {
                     book: 'O Pequeno Príncipe',
-                    source: require('@/assets/img/o-pequeno-principe.jpg')
+                    source: require('@/assets/img/o-pequeno-principe.jpg'),
+                    synopsis: 'O Pequeno Príncipe narra a história de um aviador que, após um acidente, acaba fazendo um pouso forçado no deserto e encontra um garoto louro, que diz ter vindo de outro planeta. Com o passar dos dias no deserto, o pequeno príncipe conta suas histórias e acaba ensinando ao aviador as maiores lições de sua vida'
                 },
                 {
                     book: 'O Poder do Hábito',
-                    source: require('@/assets/img/o-poder-do-habito.jpg')
+                    source: require('@/assets/img/o-poder-do-habito.jpg'),
+                    synopsis: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, dicta nemo! Alias, dolorem explicabo? Eum minus voluptatem quod, ducimus consectetur voluptate libero et quos mollitia ut. Aspernatur, repudiandae hic! Voluptas'
                 },
                 {
                     book: 'Os Sofrimentos do Jovem Werther',
-                    source: require('@/assets/img/werther.jpg')
-                },
+                    source: require('@/assets/img/werther.jpg'),
+                    synopsis: 'Os Sofrimentos do Jovem Werther narra a história de um jovem que, através de cartas que escreve a seu amigo, fala sobre o amor que sente por Charlott, uma jovem que acava se casando com outro homem. O casamento de Charlott causa a Werther uma enorme aflição, que vai se tornando cada vez mais e mais intensa ao longo da história, o que culmina na climax da história, quando Werther tira a própria vida.'
+                }
             ]
         })
     }
