@@ -1,7 +1,9 @@
 <template>
     <article class="deck-card">
         <h3>{{ deckTitle }}</h3>
-        <p>{{ deckDescription }}</p>
+        <div class="description-container">
+            <p>{{ deckDescription }}</p>
+        </div>
     </article>
 </template>
 
@@ -17,8 +19,8 @@
 
 <style scoped>
     .deck-card {
-        height: 200px;
-        width: 175px;
+        min-height: 200px;
+        min-width: 175px;
         border-radius: 15px;
         background-color: #e2602c;
         color: #fff;
@@ -28,20 +30,22 @@
         flex-direction: column;
     }
 
-    .deck-card p,
+    .description-container {
+        width: 80%;
+    }
+    .deck-card .description-container p,
     .deck-card h3 {
         text-align: center;
     }
 
     .deck-card h3 {
-        position: absolute;
         transition: 125ms;
         font-weight: 800;
         font-size: 20px;
+        transform: translateY(15px);
     }
-    .deck-card p {
+    .description-container p {
         scale: 0;
-        transform: translateY(10px);
         transition: 125ms;
         font-weight: 500;
     }
@@ -50,7 +54,7 @@
         cursor: pointer;
     }
 
-    .deck-card:hover > p {
+    .deck-card:hover > .description-container p {
         scale: 1;
         transition: 200ms;
     }

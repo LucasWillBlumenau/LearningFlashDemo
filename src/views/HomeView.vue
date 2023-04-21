@@ -1,22 +1,24 @@
 <template>
-  <main class="home">
-    <div v-if="isModalActive" class="modal">
-        <h3>Adicione Seu Novo Deck</h3>
-        <form @submit.prevent="createDeck">
-            <div class="inputfield">
-                <label for="firstField">Nome</label>
-                <input type="text" name="firstField" v-model="deckName" required>
-            </div>
-            <div class="inputfield">
-                <label for="secondField">Descrição</label>
-                <input type="text" name="secondField" v-model="deckDescription" required>
-            </div>
-            <div class="buttons">
-                <button type="submit">Adicionar</button>
-                <button @click="isModalActive = false">Cancelar</button>
-            </div>
-        </form>
+  <div v-if="isModalActive" class="modal">
+        <div class="modal-box">
+          <h3>Adicione Seu Novo Deck</h3>
+          <form @submit.prevent="createDeck">
+              <div class="inputfield">
+                  <label for="firstField">Nome</label>
+                  <input type="text" name="firstField" v-model="deckName" required>
+              </div>
+              <div class="inputfield">
+                  <label for="secondField">Descrição</label>
+                  <input type="text" name="secondField" v-model="deckDescription" required>
+              </div>
+              <div class="buttons">
+                  <button type="submit">Adicionar</button>
+                  <button @click="isModalActive = false">Cancelar</button>
+              </div>
+          </form>
+        </div>
     </div>
+  <main class="home">
     <h1 class="section-title">Confira os resumos da semana</h1>
     <section class="books-section">
       <a v-for="(image, index) in images" :href="'/books/' + index">
@@ -102,6 +104,7 @@
     height: 100vh;
     padding: 35px 15px;
     position: relative;
+    margin-left: 4rem;
   }
 
   .section-title {
@@ -123,6 +126,7 @@
     width: 100%;
     gap: 15px;
     padding: 15px 30px;
+    overflow-x: scroll;
   }
 
   .books-section a {
@@ -140,12 +144,13 @@
   }
 
   .decks {
-    width: 100%;
+    width: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 50px;
     padding: 25px 45px;
+    overflow-x: scroll;
   }
 
   .no-flashcards-section {
@@ -193,7 +198,6 @@
       flex-direction: column;
       justify-content: center;
       align-items: left;
-      margin-left: 1rem;
   }
 
   .flashcard-appender p {
@@ -234,23 +238,29 @@
   }
 
   .modal {
-      position: absolute;
-      top: 40%;
-      left: 40%;
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #11111199;
       z-index: 2;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      background-color: #111111;
-      color: #fff;
-      height: 300px;
-      width: 300px;
-      gap: 25px;
-      padding: 50px 30px;
-      border-radius: 25px;
   }
 
+  .modal-box {
+    color: #fff;
+    background-color: #111;
+    padding: 15px 25px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
   .inputfield {
       display: flex;
       flex-direction: column;
@@ -286,17 +296,7 @@
   @media screen and (max-width: 900px) {
     .home {
       margin-left: 0;
-    }
-
-    .books-section {
-        flex-direction: column;
-        align-items: center;
-        gap: 30px;
-    }
-
-    .modal {
-      position: fixed;
-      left: 15%;
+      margin-bottom: 2rem;
     }
 
     .no-flashcards-section {

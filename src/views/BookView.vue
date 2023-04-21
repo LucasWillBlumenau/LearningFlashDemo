@@ -5,7 +5,9 @@
             <img class="book-image" :src="books[$route.params.index].source">
         </section>
         <section class="synopses-section">
-            <p>{{ books[$route.params.index].synopsis }}</p>
+            <div class="synopses-container">
+                <p>{{ books[$route.params.index].synopsis }}</p>
+            </div>
             <button class="play-button">
                 <span><i class="fa fa-play"></i>Reproduzir Resumo</span>
             </button>
@@ -78,7 +80,7 @@
         gap: 25px;
         width: 400px;
     }
-    .synopses-section p {
+    .synopses-container p {
         color: #fff;
     }
 
@@ -101,6 +103,10 @@
     @media screen and (max-width: 900px) {
         .book-page {
             flex-direction: column;
+        }
+
+        .synopses-container {
+            width: 80%;
         }
     }
 </style>
