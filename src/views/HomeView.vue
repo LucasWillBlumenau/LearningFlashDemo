@@ -17,7 +17,7 @@
               </div>
           </form>
         </div>
-    </div>
+  </div>
   <main class="home">
     <h1 class="section-title">Confira os resumos da semana</h1>
     <section class="books-section">
@@ -255,7 +255,7 @@
   .modal-box {
     color: #fff;
     background-color: #111;
-    padding: 15px 25px;
+    padding: 30px 25px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;

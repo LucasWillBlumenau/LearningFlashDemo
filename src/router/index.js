@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import BookPage from '@/views/BookView.vue'
+import TextReaderView from '@/views/TextReaderView.vue'
 
 const routes = [
   {
@@ -12,6 +13,11 @@ const routes = [
     path: '/books/:index',
     name: 'book-page',
     component: BookPage
+  },
+  {
+    path: '/books/text',
+    name: 'text-reader',
+    component: TextReaderView
   }
 ]
 
