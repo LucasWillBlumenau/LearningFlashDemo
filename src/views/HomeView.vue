@@ -121,12 +121,11 @@
     position: relative;
     top: 45px;
     display: flex;
-    justify-content: center;
     height: min-content;
     width: 100%;
     gap: 15px;
     padding: 15px 30px;
-    overflow-x: scroll;
+    overflow: auto;
   }
 
   .books-section a {
@@ -144,13 +143,12 @@
   }
 
   .decks {
-    width: 80%;
+    width: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
     gap: 50px;
     padding: 25px 45px;
-    overflow-x: scroll;
+    overflow: auto;
   }
 
   .no-flashcards-section {
