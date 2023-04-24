@@ -10,21 +10,21 @@
                 <p>{{ translatedPhraseSelected }}</p>
             </div>
             <div class="modal-buttons-container">
-                <button class="read-button" @click="isModalActive = false">Adicionar FlashCard</button>
-                <button class="read-button" @click="isModalActive = false">Cancelar</button>
+                <button class="button" @click="isModalActive = false">Adicionar FlashCard</button>
+                <button class="button" @click="isModalActive = false">Cancelar</button>
             </div>
         </div>
     </div>
     <main class="content">
         <div class="text-wrapper">
-            <div class="paragraph-container">
+            <div class="paragraph-container first">
                 <p><span @click="showModal(phrase)" class="text-heading" v-for="phrase in text">{{ phrase.original + ' '}}</span></p>
             </div>
-            <div class="paragraph-container">
+            <div class="paragraph-container second">
                 <p><span class="translation-heading" v-for="phrase in text">{{ phrase.translation + ' '}}</span></p>
             </div>
         </div>
-        <button class="read-button" @click="readText">Ler Texto</button>
+        <button class="button read-text-button" @click="readText">Ler Texto</button>
     </main>
 </template>
 
@@ -114,7 +114,7 @@
     }
 </script>
 
-<style>
+<style scoped>
     .content {
         width: 100vw;
         height: 100vh;
@@ -130,7 +130,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 2rem;
     }
 
     .paragraph-container {
@@ -141,7 +140,6 @@
         align-items: center;
         padding: 15px 25px;
         background-color: #111111cb;
-        border-radius: 25px;
         height: 350px;
     }
     
@@ -190,7 +188,7 @@
         gap: 15px;
     }
 
-    .read-button {
+    .button {
         border: none;
         border-radius: 5px;
         padding: 10px 15px;
@@ -198,7 +196,7 @@
         margin-bottom: 30px;
     }
 
-    .read-button:hover {
+    .button:hover {
         cursor: pointer;
     }
 
@@ -206,11 +204,44 @@
         .content{
             margin-left: 4rem;
         }
+        
+        .text-wrapper {
+            gap: 2rem;
+        }
+
+        .paragraph-container {
+            border-radius: 25px;
+        }
     }
 
     @media screen and (max-width: 900px) {
-        .content{
+        .content {
             margin-bottom: 2rem;
+        }
+
+        .text-wrapper {
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .paragraph-container {
+            width: 100vw;
+            padding: 15px 5px;
+            position: fixed;
+        }
+
+        .paragraph-container.first {
+            top: 0;
+            bottom: 55%;
+        }
+
+        .paragraph-container.second {
+            bottom: 0;
+            top: 55%;
+        }
+
+        .read-text-button {
+            position: fixed;
         }
     }
 </style>
